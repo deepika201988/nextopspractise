@@ -1,1 +1,24 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: httpd-app
+  template: 
+    metadata:
+       labels:
+          app: httpd-app
+    spec:
+     containers:
+     - name: httpd-app
+       image: httpd
+       ports:
+       - containterPort: 80
+       volumeMounts:
+       - name: empdir-vol
+     volumes:
+     - name: empdir-vol
+       empDir: {}
